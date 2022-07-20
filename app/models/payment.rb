@@ -13,24 +13,20 @@ class Payment < ActiveRecord::Base
   def process_payment
     customer = Stripe::Customer.create(email: email, card: token)
 
-    session = Stripe::Checkout::Session.create( { customer: customer,
-                                                  payment_method_types: ['card'],
-                                                  line_items: [{ 
-                                                    name: "Premium",
-                                                    amout: "1000",
-                                                    currency: "usd",
-                                                    quantity: 1
-                                                   }],
-                                                   mode: "payment",
-                                                   success_url: root_url,
-                                                   cancel_url: root_url,
-                                                   })
-                                                   respond_to do |format|
-                                                    format.js
-                                                   end
     # Stripe::Charge.create customer: customer.id, 
     #                       amount: 1000,
     #                       description: 'Premium',
     #                       currency: 'usd'
+
+    # @session = Stripe::Checkout::Session.create({ 
+    #   customer: customer.id,
+    #   payment_method_types: ['card'],
+    #   line_items: [{ price: 'price_1LLAqALkLgFuVfHBhi0kie6x', quantity: 1 }],
+    #   allow_promotion_codes: true,
+    #   mode: 'payment',
+    #   success_url: root_url + "?session)id={CHECKOUT_SESSION_ID}",
+    #   cancel_url: root_url,
+    #   })
+    #   redirect_to @session.url
   end
 end
