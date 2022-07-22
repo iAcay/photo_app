@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_one :payment
   accepts_nested_attributes_for :payment
+
+  enum account_type: { free: 0, premium: 1, amaze: 2 }, _prefix: true
 end

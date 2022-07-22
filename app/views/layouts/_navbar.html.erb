@@ -1,0 +1,31 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to 'PhotoApp', root_path, class: 'navbar-brand' %>
+      </div>
+      <div class="navbar-collapse collapse">
+        <% if current_user %>
+          <ul class='nav navbar-nav'>
+            <li><%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile' %></li>
+            <li><%= link_to "ACCOUNT TYPE: #{current_user.account_type.upcase}" %></li>
+            <li><%= button_to "Become PREMIUM", checkout_create_path, method: :post %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="col-md-3 logout"><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+            <%= link_to 'Sign in', new_user_session_path, title: 'Sign in' %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -85,3 +85,11 @@
   list-style: none;
   padding-left: 0;
 }
+
+.container-fluid.navbar-center {
+  justify-content: center;
+}
+
+.container-fluid.navbar-right {
+  justify-content: end;
+}
