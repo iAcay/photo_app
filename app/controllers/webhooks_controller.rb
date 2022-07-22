@@ -24,9 +24,9 @@ class WebhooksController < ApplicationController
     # Handle the event
     case event.type
     when 'checkout.session.completed'
-      session = event.data.object
-      session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ["line_items"]})
-      puts 'siemanooooo'
+      session = event.data.customer_details
+      @user = User.find_by(email: session.email)
+      @user.update(account_type: :premium)
     end
 
     render json: { message: 'success' }
