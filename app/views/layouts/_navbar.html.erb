@@ -13,7 +13,7 @@
           <ul class='nav navbar-nav'>
             <li><%= link_to ('<i class="fa fa-user"></i> ' + truncate(current_user.email, length: 25)).html_safe, edit_user_registration_path, title: 'Edit Profile' %></li>
             <li><%= link_to "ACCOUNT TYPE: #{current_user.account_type.upcase}" %></li>
-            <li><%= button_to "Become PREMIUM", checkout_create_path, method: :post %></li>
+            <li class='col-md-3 logout'><%= button_to "Become PREMIUM", checkout_create_path, method: :post, data: { confirm: 'You will be redirected to a payment system.'}, class: 'btn btn-success' %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="col-md-3 logout"><%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %></li>
