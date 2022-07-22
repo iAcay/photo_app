@@ -24,7 +24,7 @@ class WebhooksController < ApplicationController
     # Handle the event
     case event.type
     when 'checkout.session.completed'
-      session = event.data.customer_details
+      session = event.data.object.customer_details
       @user = User.find_by(email: session.email)
       @user.update(account_type: :premium)
     end
