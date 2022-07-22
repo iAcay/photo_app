@@ -12,4 +12,3 @@
 //= require twitter/bootstrap/button
 //= require twitter/bootstrap/collapse
 //= require_tree .
-import "./credit_card_form"
