@@ -30,6 +30,7 @@ class WebhooksController < ApplicationController
         @user.update(account_type: :amaze)
       else 
         @user.update(account_type: :premium)
+      end
     end
     render json: { message: 'success' }
   end
