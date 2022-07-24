@@ -8,4 +8,9 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :payment
 
   enum account_type: { free: 0, premium: 1, amaze: 2 }, _prefix: true
+
+  after_create do
+    customer = Stripe::Customer.create(email: email)
+    update(stripe_customer_id: customer.id)
+  end
 end
