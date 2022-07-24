@@ -16,7 +16,7 @@
             <% if current_user.account_type_free? %>
               <li class='col-md-3 logout'><%= button_to "Become PREMIUM", checkout_create_path, method: :post, data: { confirm: 'You will be redirected to a payment system.'}, class: 'btn btn-success' %></li>
             <% elsif current_user.account_type_premium? %>
-              <li class='col-md-3 logout'><%= button_to "Become PREMIUM", checkout_create_path, method: :post, data: { confirm: 'You will be redirected to a payment system.'}, class: 'btn btn-success' %></li>
+              <li class='col-md-3 logout'><%= button_to "Become AMAZE", checkout_create_path, method: :post, data: { confirm: 'You will be redirected to a payment system.'}, class: 'btn btn-success' %></li>
             <% else %>
               <li class='col-md-3 logout'><%= button_to "You have the best version of account", checkout_create_path, disabled: true, class: 'btn btn-success' %></li>
             <% end %>
