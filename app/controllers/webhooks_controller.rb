@@ -26,9 +26,11 @@ class WebhooksController < ApplicationController
     when 'checkout.session.completed'
       session = event.data.object.customer_details
       @user = User.find_by(email: session.email)
-      @user.update(account_type: :premium)
+      if @user.account_type_premium?
+        @user.update(account_type: :amaze)
+      else 
+        @user.update(account_type: :premium)
     end
-
     render json: { message: 'success' }
   end
 end
