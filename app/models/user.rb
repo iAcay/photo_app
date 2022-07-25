@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   enum account_type: { free: 0, premium: 1, amaze: 2 }, _prefix: true
 
+  has_many :images, dependent: :destroy
+
   after_create do
     customer = Stripe::Customer.create(email: email)
     update(stripe_customer_id: customer.id)
