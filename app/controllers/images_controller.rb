@@ -31,7 +31,15 @@ class ImagesController < ApplicationController
   end
 
   def update
-
+    respond_to do |format|
+      if image.update(image_params)
+        format.html { redirect_to image, notice: 'Image was successfully updated.' }
+        format.json { render :show, status: :updated, location: image }
+      else
+        format.html { render :edit, locals: { image: image }}
+        format.json { render json: image.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
